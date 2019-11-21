@@ -20,7 +20,7 @@ class Grupo(models.Model):
         default='7-8')
     salon = models.ForeignKey(Salon, on_delete=models.CASCADE)
     materia = models.ForeignKey(Materia, on_delete=models.CASCADE)
-    alumno = models.ManyToManyField(Alumno)
+    alumno = models.ManyToManyField(Alumno,related_name='alumnos')
 
     def __str__(self):
         return self.nombre

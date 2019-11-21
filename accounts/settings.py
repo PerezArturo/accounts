@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'grupos',
     'alumnos',
     'widget_tweaks',
-    'import_export',
 ]
 
 MIDDLEWARE = [

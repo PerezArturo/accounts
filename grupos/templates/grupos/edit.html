@@ -20,15 +20,22 @@
         {% for hidden_field in form.hidden_fields %}
             {{ hidden_field }}
             {% endfor %}
-        {% for field in form.visible_fields %}
-            <div class="control">
-                {{ field.label_tag }}
-                {% render_field field class="input" %}
-                {% if field.help_text %}
-                <small class="textarea text-muted">{{ field.help_text }}</small>
+        <div class="control">
+                <label>Nombre: </label>
+                {% render_field form.nombre class+="input" %}
+                <label>Horario: </label>
+                {% render_field form.horario class+="input" %}
+                <label>Salon: </label>
+                {% render_field form.salon class+="input" %}
+                <label>Materia: </label>
+                {% render_field form.materia class+="input" %}
+                <label>Alumnos: </label>
+                {% render_field form.alumno class+="textarea" %}
+                {% if form.help_text %}
+                <small class="textarea text-muted">{{ form.help_text }}</small>
                 {% endif %}
             </div>
-            {% endfor %}
+        <br/> 
         <button type="submit" class="button is-primary">Guardar</button>
         </form>
         </div>

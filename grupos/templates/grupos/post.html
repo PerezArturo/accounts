@@ -1,5 +1,5 @@
 <!-- templates/home.html-->
-{% extends 'base.html' %} {% load static %} {% load widget_tweaks %} {% block title %}Agregar|Salones{% endblock %} {% block content %} {
+{% extends 'base.html' %} {% load static %} {% load widget_tweaks %} {% block title %}Agregar|Salones{% endblock %} {% block content %} 
     <div class="column is-10" id="page-content">
         <div class="content-header">
             <h4 class="title is-4">Salones</h4>
@@ -20,15 +20,22 @@
         {% for hidden_field in form.hidden_fields %}
             {{ hidden_field }}
             {% endfor %}
-        {% for field in form.visible_fields %}
             <div class="control">
-                {{ field.label_tag }}
-                {% render_field field %}
-                {% if field.help_text %}
-                <small class="textarea text-muted">{{ field.help_text }}</small>
+                <label>Nombre: </label>
+                {% render_field form.nombre class+="input" %}
+                <label>Horario: </label>
+                {% render_field form.horario class+="input" %}
+                <label>Salon: </label>
+                {% render_field form.salon class+="input" %}
+                <label>Materia: </label>
+                {% render_field form.materia class+="input" %}
+                <label>Alumnos: </label>
+                {% render_field form.alumno class+="textarea" %}
+                {% if form.help_text %}
+                <small class="textarea text-muted">{{ form.help_text }}</small>
                 {% endif %}
             </div>
-            {% endfor %}
+        <br/> 
         <button type="submit" class="button is-primary">Guardar</button>
         </form>
         </div>

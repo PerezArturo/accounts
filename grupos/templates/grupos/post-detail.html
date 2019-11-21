@@ -1,27 +1,23 @@
 <!-- templates/home.html-->
-{% extends 'base.html' %} {% load static %} {% block title %}Salones{% endblock %} {% block content %} 
+{% extends 'base.html' %} {% load static %} {% block title %}{{grupo.nombre}}{% endblock %} {% block content %} 
     <div class="column is-10" id="page-content">
         <div class="content-header">
-            <h4 class="title is-4">Materias</h4>
+            <h4 class="title is-4">{{grupo.nombre}}</h4>
             <span class="separator"></span>
             <nav class="breadcrumb has-bullet-separator" aria-label="breadcrumbs">
                 <ul>
-                    <li><a>General</a></li>
-                    <li class=""><a href="#" aria-current="page">Materias</a></li>
-                    <a href="{% url 'grupos:post' %}"><i class="fas fa-lg fa-plus"></i></a>
+                    <li><strong>Hora: </strong> {{ grupo.horario }} </li>
+                    <li><strong>Salon: </strong></p> {{ grupo.salon}}</li>
+                    <li><strong>Materia: </strong></p> {{ grupo.materia}}</li>
                 </ul>
                 
             </nav>
         </div>
 
-        <div class="content-body">
-            <div class="columns is-mobile is-multiline is-centered">
-            {{grupo.nombre}}
-            {{grupo.horario}}
-            {{grupo.salon}}
-            {{grupo.materia}}
-            </div>
+        <div class="container is-fullhd">
+            <h3 class="title is-3">Alumnos inscritos en el grupo</h3>
+                {{grupo.alumno.all|join:", "}}
+            
         </div>
-    </div>
 </div>
 {% endblock %}
