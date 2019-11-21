@@ -1,0 +1,27 @@
+<!-- templates/home.html-->
+{% extends 'base.html' %} {% load static %} {% block title %}Salones{% endblock %} {% block content %} 
+    <div class="column is-10" id="page-content">
+        <div class="content-header">
+            <h4 class="title is-4">Materias</h4>
+            <span class="separator"></span>
+            <nav class="breadcrumb has-bullet-separator" aria-label="breadcrumbs">
+                <ul>
+                    <li><a>General</a></li>
+                    <li class=""><a href="#" aria-current="page">Materias</a></li>
+                    <a href="{% url 'grupos:post' %}"><i class="fas fa-lg fa-plus"></i></a>
+                </ul>
+                
+            </nav>
+        </div>
+
+        <div class="content-body">
+            <div class="columns is-mobile is-multiline is-centered">
+            {{grupo.nombre}}
+            {{grupo.horario}}
+            {{grupo.salon}}
+            {{grupo.materia}}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

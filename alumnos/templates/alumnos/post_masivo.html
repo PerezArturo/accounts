@@ -1,0 +1,37 @@
+<!-- templates/home.html-->
+{% extends 'base.html' %} {% load static %} {% load widget_tweaks %} {% block title %}Agregar|Salones{% endblock %} {% block content %} 
+<div class="column is-10" id="page-content">
+<div class="content-header">
+   <h4 class="title is-4">Salones</h4>
+   <span class="separator"></span>
+   <nav class="breadcrumb has-bullet-separator" aria-label="breadcrumbs">
+      <ul>
+         <li>
+            <a>General</a>
+         </li>
+         <li>
+            <a href="#" aria-current="page">Alumnos</a>
+         </li>
+         <li class="is-active">
+            <a href="#" aria-current="page">Agregar masivamente</a>
+         </li>
+      </ul>
+   </nav>
+</div>
+<section class="hero is-medium">
+<div class="hero-body">
+<div class="container has-text-centered">
+<h1 class="title">
+        Seleccionar archivo CSV
+      </h1>
+   <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        <input type="file" name="myfile">
+                        <button type="submit" class="button is-primary" >Subir archivo</button>
+                        
+                    </form>
+</div>                    
+</div>
+</section>
+{% endblock %}

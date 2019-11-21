@@ -1,0 +1,36 @@
+<!-- templates/home.html-->
+{% extends 'base.html' %} {% load static %} {% block title %}Grupos{% endblock %} {% block content %} 
+    <div class="column is-10" id="page-content">
+        <div class="content-header">
+            <h4 class="title is-4">Grupos</h4>
+            <span class="separator"></span>
+            <nav class="breadcrumb has-bullet-separator" aria-label="breadcrumbs">
+                <ul>
+                    <li><a>General</a></li>
+                    <li class=""><a href="#" aria-current="page">Materias</a></li>
+                    <p> Agregar</p> <a href="{% url 'grupos:post' %}"><i class="fas fa-lg fa-plus"></i></a>
+                </ul>
+                
+            </nav>
+        </div>
+
+        <div class="content-body">
+        {% if grupos_rec %} 
+            <div class="columns is-mobile is-multiline is-centered">
+            {% for grupo in grupos_rec %}
+                <div class="column is-narrow">
+                    <p class="bd-notification is-primary">
+                        <a href="{% url 'grupos:edit' grupo.pk %}"><font color="FFFFFF"><i class="fas fa-edit"></i></font></a>
+                        <br> <a href="{% url 'grupos:detail' grupo.pk %}"><font color="FFFFFF">{{ grupo.nombre }}</font></a>
+                        <br> <a href="{% url 'grupos:delete' grupo.pk %}"><font color="FFFFFF"><i class="fas fa-trash"></i></font></a>
+                    </p>
+                </div>
+            {% endfor %} 
+            </div>
+        {% else %}
+            <p>No hay grupos dados de alta.</p>
+        {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<section class="hero is-success is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="column is-4 is-offset-4">
+                    <div class="box">
+                        <p class="subtitle has-text-black">Please login to proceed.</p>
+                        <form method="post">
+                        {% csrf_token %}
+                            <div class="field">
+                                <div class="control">
+                                    <input type="text" class="input is-large" name={{ form.username.html_name }} placeholder="username">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <input type="password" class="input is-large" name={{ form.password.html_name }} placeholder="password"
+                                </div>
+                            </div>
+                            <div class="columns">
+                        <div class="column">
+                        {% if form.errors %}
+                            {% for key, value in form.errors.items %} 
+                                <div class="help is-danger" role="alert">
+                                {% if key != '__all__' %}{{ key }} - {% endif %}{{ value | striptags }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}  
+                        </div>
+                        </div>
+                            <button class="button is-block is-info is-large is-fullwidth" id="sendlogin" type="submit">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

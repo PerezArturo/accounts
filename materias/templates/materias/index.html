@@ -1,0 +1,36 @@
+<!-- templates/home.html-->
+{% extends 'base.html' %} {% load static %} {% block title %}Materias{% endblock %} {% block content %} 
+    <div class="column is-10" id="page-content">
+        <div class="content-header">
+            <h4 class="title is-4">Materias</h4>
+            <span class="separator"></span>
+            <nav class="breadcrumb has-bullet-separator" aria-label="breadcrumbs">
+                <ul>
+                    <li><a>General</a></li>
+                    <li class=""><a href="#" aria-current="page">Materias</a></li>
+                    <p> Agregar </p> <a href="{% url 'materias:post' %}"><i class="fas fa-lg fa-plus"></i></a>
+                </ul>
+                
+            </nav>
+        </div>
+
+        <div class="content-body">
+        {% if materias_rec %} 
+            <div class="columns is-mobile is-multiline is-centered">
+            {% for materia in materias_rec %}
+                <div class="column is-narrow">
+                    <p class="bd-notification is-primary">
+                        <i class="fas fa-edit"></i>
+                        <br> {{ materia.nombre }}
+                        <br> <a href="{% url 'materias:delete' materia.pk %}"><font color="FFFFFF"><i class="fas fa-trash"></i></font></a>
+                    </p>
+                </div>
+            {% endfor %} 
+            </div>
+        {% else %}
+            <p>No hay materias dadas de alta.</p>
+        {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

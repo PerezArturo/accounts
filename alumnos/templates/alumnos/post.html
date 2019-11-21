@@ -1,0 +1,39 @@
+<!-- templates/home.html-->
+{% extends 'base.html' %} {% load static %} {% load widget_tweaks %} {% block title %}Agregar|Salones{% endblock %} {% block content %} 
+<div class="column is-10" id="page-content">
+<div class="content-header">
+   <h4 class="title is-4">Salones</h4>
+   <span class="separator"></span>
+   <nav class="breadcrumb has-bullet-separator" aria-label="breadcrumbs">
+      <ul>
+         <li>
+            <a>General</a>
+         </li>
+         <li>
+            <a href="#" aria-current="page">Salones</a>
+         </li>
+         <li class="is-active">
+            <a href="#" aria-current="page">Agregar</a>
+         </li>
+      </ul>
+   </nav>
+</div>
+<div class="content-body">
+   <form method="post" novalidate>
+      {% csrf_token %}
+      {% for hidden in form.hidden_fields %}
+      {{ hidden }}
+      {% endfor %}
+      {% for field in form.visible_fields %}
+      <div class="control">
+         <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+         {% render_field field class="input" placeholder=form.label %}
+         {% for error in field.errors %}
+         <span class="help-block">{{ error }}</span>
+         {% endfor %}
+      </div>
+      {% endfor %}
+      <button type="submit" class="button is-primary">Guardar</button>
+   </form>
+</div>
+{% endblock %}

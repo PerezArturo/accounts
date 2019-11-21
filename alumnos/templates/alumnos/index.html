@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Alumnos{% endblock %} {% block content %} 
+    <div class="column is-10" id="page-content">
+        <div class="content-header">
+            <h4 class="title is-4">Salones</h4>
+            <span class="separator"></span>
+            <nav class="breadcrumb has-bullet-separator" aria-label="breadcrumbs">
+                <ul>
+                    <li><a>General</a></li>
+                    <li class=""><a href="#" aria-current="page">Salones</a></li>
+                    <p> Agregar individualmente </p> <a href="{% url 'alumnos:post' %}"><i class="fas fa-lg fa-plus"></i></a>
+                    <p> Agregar masivamente </p> <a href="{% url 'alumnos:postfile' %}"><i class="fas fa-lg fa-address-book"></i></a>                    
+                </ul>                
+            </nav>
+        </div>
+
+        <div class="content-body">
+        {% if alumnos_rec %} 
+            <div class="columns is-mobile is-multiline is-centered">
+            {% for alumno in alumnos_rec %}
+                <div class="column is-narrow">
+                    <p class="bd-notification is-primary">
+                        <i class="fas fa-user"></i>
+                        <br> {{ alumno.matricula }}
+                        <br> {{ alumno.nombre }}
+                        <br> <a href=""><font color="FFFFFF"><i class="fas fa-trash"></i></font></a>
+                    </p>
+                </div>
+            {% endfor %} 
+            </div>
+        {% else %}
+            <p>No hay alumnos dados de alta.</p>
+        {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

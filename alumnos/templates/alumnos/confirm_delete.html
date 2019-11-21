@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Salones{% endblock %} {% block content %} 
+    <div class="column is-10" id="page-content">
+        <div class="content-header">
+            <h4 class="title is-4">Salones</h4>
+            <span class="separator"></span>
+            <nav class="breadcrumb has-bullet-separator" aria-label="breadcrumbs">
+                <ul>
+                    <li><a>General</a></li>
+                    <li class=""><a href="#" aria-current="page">Salones</a></li>
+                    <a href="{% url 'salones:post' %}"><i class="fas fa-lg fa-plus"></i></a>
+                </ul>
+                
+            </nav>
+        </div>
+
+        <div class="content-body">
+            <form method="post">
+   {% csrf_token %}
+    <div class="field">
+      <div class="notification is-danger">
+       Seguro que desea eliminar al salon {{ object }}?
+      </div>
+    </div>
+    <button type="submit" class="button is-danger">
+    <i class="fas fa-lg fa-trash"></i>
+    </button>
+  </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
