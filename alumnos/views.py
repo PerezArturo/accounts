@@ -1,5 +1,5 @@
 import io,csv
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404,HttpResponse
 from django.views.generic import ListView, DetailView
 from django.contrib import messages
 from django.core.mail import send_mail
@@ -21,13 +21,16 @@ def PostView(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
-            form.save()
+            post = form.save(commit = False)
+            post.save()
             subject = 'Has sido dado de alta'
             message = ' Bienvenido alumno ' +str(form['nombre'].value())+ ' con numero de control ' + str(form['matricula'].value())+ ' al sistema.'
             email_from = settings.EMAIL_HOST_USER
             recipient_list = str(form['email'].value())
             send_mail( subject, message, email_from, [recipient_list] )
-        return redirect('alumnos:index')
+            return redirect('alumnos:index')
+        else:
+            return render(request,'alumnos/post.html',{'form': form})
     form = PostForm()
     return render(request,'alumnos/post.html',{'form': form})
 

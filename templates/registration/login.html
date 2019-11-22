@@ -9,31 +9,39 @@
             <div class="container has-text-centered">
                 <div class="column is-4 is-offset-4">
                     <div class="box">
-                        <p class="subtitle has-text-black">Please login to proceed.</p>
+                        <p class="subtitle has-text-black">Ingrese sus datos para acceder.</p>
                         <form method="post">
                         {% csrf_token %}
                             <div class="field">
-                                <div class="control">
-                                    <input type="text" class="input is-large" name={{ form.username.html_name }} placeholder="username">
+                                <div class="control has-icons-left">
+                                <span class="icon is-medium is-left">
+                                    <i class="fas fa-lg fa-user"></i>
+                                </span>
+                                    <input type="text" class="input is-large" name={{ form.username.html_name }} placeholder="Usuario">
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="control">
-                                    <input type="password" class="input is-large" name={{ form.password.html_name }} placeholder="password"
+                                <div class="control has-icons-left">
+                                
+                                <span class="icon is-medium is-left">
+                                    <i class="fas fa-lg fa-lock"></i>
+                                </span>
+                                    <input type="password" class="input is-large" name={{ form.password.html_name }} placeholder="Contraseña">
+                                
                                 </div>
                             </div>
                             <div class="columns">
                         <div class="column">
                         {% if form.errors %}
                             {% for key, value in form.errors.items %} 
-                                <div class="help is-danger" role="alert">
+                                <p class="help is-danger">
                                 {% if key != '__all__' %}{{ key }} - {% endif %}{{ value | striptags }}
-                                </div>
+                                </p>
                             {% endfor %}
                         {% endif %}  
                         </div>
                         </div>
-                            <button class="button is-block is-info is-large is-fullwidth" id="sendlogin" type="submit">Login</button>
+                            <button class="button is-block is-info is-large is-fullwidth" id="sendlogin" type="submit">Ingresar</button>
                         </form>
                     </div>
                 </div>

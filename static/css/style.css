@@ -1,6 +1,7 @@
 html,body {
     font-size: 14px;
     font-weight: 300;
+    font-family: 'Alata', sans-serif;
   }
   .hero.is-success {
     background: #F2F6FA;

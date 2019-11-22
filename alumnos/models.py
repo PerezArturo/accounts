@@ -1,5 +1,5 @@
 from django.db import models
-
+from .validators import validate_email
 SEMESTRES = [
     ('1', '1'),
     ('2', '2'),
@@ -16,11 +16,11 @@ SEMESTRES = [
     ]
     
 class Alumno(models.Model):
-    matricula = models.CharField(max_length=6)
-    nombre = models.CharField(max_length=50)
-    apellidop = models.CharField(max_length=50)
-    apellidom = models.CharField(max_length=50)
-    email = models.EmailField(max_length=254)
+    matricula = models.CharField(max_length=6,null = False, unique=True)
+    nombre = models.CharField(max_length=50,null = False)
+    apellidop = models.CharField(max_length=50,null = False)
+    apellidom = models.CharField(max_length=50,null = False)
+    email = models.EmailField(max_length=254,null = False, validators=[validate_email])
     semestre = models.CharField(
         max_length=2,
         choices=SEMESTRES,
