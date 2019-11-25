@@ -14,8 +14,12 @@ def PostView(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
-            form.save()
-        return redirect('materias:index')
+            post = form.save(commit = False)
+            post.save()
+            return redirect('materias:index')
+        else:
+            return render(request,'materias/post.html',{'form': form})
+
     form = PostForm()
     return render(request,'materias/post.html',{'form': form})
 

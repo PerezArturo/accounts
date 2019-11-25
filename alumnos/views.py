@@ -17,6 +17,10 @@ class IndexView(ListView):
     def get_queryset(self):
         return Alumno.objects.all().order_by('matricula')
 
+class PostDetailView(DetailView):
+    model=Alumno
+    template_name = 'alumnos/post-detail.html'
+
 def PostView(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
@@ -55,3 +59,18 @@ def simple_upload(request):
         
     context={}
     return redirect('alumnos:index')
+
+def edit(request, pk, template_name='alumnos/edit.html'):
+    post= get_object_or_404(Alumno, pk=pk)
+    form = PostForm(request.POST or None, instance=post)
+    if form.is_valid():
+        form.save()
+        return redirect('alumnos:index')
+    return render(request, template_name, {'form':form})
+
+def delete(request, pk, template_name='alumnos/confirm_delete.html'):
+    post= get_object_or_404(Alumno, pk=pk)    
+    if request.method=='POST':
+        post.delete()
+        return redirect('alumnos:index')
+    return render(request, template_name, {'object':post})

@@ -1,7 +1,7 @@
 from django.db import models
 
 class Salon(models.Model):
-    nombre = models.CharField(max_length=3)
+    nombre = models.CharField(max_length=3, unique=True)
 
     def __str__(self):
-        return self.nombre
+        return "Salon " + self.nombre

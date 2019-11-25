@@ -3,6 +3,8 @@ from django.utils.translation import ugettext_lazy as _
 from .models import Alumno
 
 class PostForm(forms.ModelForm):
+    matricula = forms.CharField(widget=forms.TextInput(attrs={'min':1,'max': '6','type': 'number'}))
+    email = forms.CharField(widget=forms.EmailInput())
     class Meta:
         model = Alumno
         fields = "__all__"
@@ -39,4 +41,5 @@ class PostForm(forms.ModelForm):
 
         # return any errors if found 
         return self.cleaned_data
+
 

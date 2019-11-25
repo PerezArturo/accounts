@@ -14,8 +14,7 @@ class PostForm(ModelForm):
     ('11-12', '11-12'),
     ('12-1', '12-1'),
     ] 
-    nombre = forms.CharField(
-        widget = forms.TextInput())
+    nombre = forms.CharField(widget = forms.TextInput())
     horario = forms.ChoiceField(choices=HORARIOS,widget=forms.Select())
     salon = forms.ModelChoiceField(queryset=Salon.objects.all())
     materia = forms.ModelChoiceField(queryset=Materia.objects.all())

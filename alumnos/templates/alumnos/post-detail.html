@@ -1,0 +1,49 @@
+<!-- templates/home.html-->
+{% extends 'base.html' %} {% load static %} {% block title %}{{alumno.apellidop}} {{alumno.apellidom}} {{alumno.nombre}}{% endblock %} {% block content %} 
+    <div class="column is-10" id="page-content">
+        <div class="content-header">
+            <h4 class="title is-4">Alumno</h4>
+            <span class="separator"></span>
+            <nav class="breadcrumb has-bullet-separator" aria-label="breadcrumbs">
+                <ul>
+                   <li><a>General</a></li>
+                    <li class=""><a href="#" aria-current="page">{{alumno.matricula}}</a></li>
+                    
+                </ul>
+                
+            </nav>
+        </div>
+
+        <div class='columns'>
+    <div class='section profile-heading'>
+      <div class='columns is-mobile is-multiline'>
+        <div class='column is-2'>
+          <span class='header-icon user-profile-image'>
+            <img alt='' src='http://placehold.it/300x225'>
+          </span>
+        </div>
+        <div class='column is-4-tablet is-10-mobile name'>
+          <p>
+            <span class='title is-bold'>{{alumno.apellidop}} {{alumno.apellidom}} {{alumno.nombre}}</span>
+            <br>
+            <span class='subtitle'>{{alumno.matricula}}</span>
+            <br>
+          </p>
+          <p class='tagline'>
+            The users profile bio would go here, of course. It could be two lines or more or whatever. We should probably limit the amount of characters to ~500 at most though.
+          </p>
+        </div>
+        <div class='column is-3-tablet is-6-mobile has-text-centered'>
+          <p class='stat-val'>{{alumno.email}}</p>
+          <p class='stat-key'>Correo</p>
+        </div>
+        <div class='column is-3-tablet is-6-mobile has-text-centered'>
+          <p class='stat-val'>{{alumno.semestre}}</p>
+          <p class='stat-key'>Semestre</p>
+        </div>
+        
+      </div>
+    </div>
+
+</div>
+{% endblock %}

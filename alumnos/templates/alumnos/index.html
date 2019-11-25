@@ -19,10 +19,11 @@
             {% for alumno in alumnos_rec %}
                 <div class="column is-narrow">
                     <p class="bd-notification is-primary">
+                        <a href="{% url 'alumnos:edit' alumno.pk %}"><font color="FFFFFF"><i class="fas fa-edit"></i></font></a>
                         <i class="fas fa-user"></i>
-                        <br> {{ alumno.matricula }}
+                        <br> <a href="{% url 'alumnos:detail' alumno.pk %}"><font color="FFFFFF">{{ alumno.matricula }}</font></a>
                         <br> {{ alumno.nombre }}
-                        <br> <a href=""><font color="FFFFFF"><i class="fas fa-trash"></i></font></a>
+                        <br> <a href="{% url 'alumnos:delete' alumno.pk %}"><font color="FFFFFF"><i class="fas fa-trash"></i></font></a>
                     </p>
                 </div>
             {% endfor %} 

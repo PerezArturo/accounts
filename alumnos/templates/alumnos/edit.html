@@ -1,0 +1,46 @@
+<!-- templates/home.html-->
+{% extends 'base.html' %} {% load static %} {% load widget_tweaks %} {% block title %}Agregar|Salones{% endblock %} {% block content %} {
+    <div class="column is-10" id="page-content">
+        <div class="content-header">
+            <h4 class="title is-4">Salones</h4>
+            <span class="separator"></span>
+            <nav class="breadcrumb has-bullet-separator" aria-label="breadcrumbs">
+                <ul>
+                    <li><a>General</a></li>
+                    <li><a href="#" aria-current="page">Alumnos</a></li>
+                    <li class="is-active"><a href="#" aria-current="page">Editar</a></li>
+                </ul>
+                
+            </nav>
+        </div>
+
+        <div class="content-body">
+        <form method="post" novalidate>
+            {% csrf_token %}
+        {% for hidden_field in form.hidden_fields %}
+            {{ hidden_field }}
+            {% endfor %}
+        <div class="control">
+                <label>Matricula: </label>
+                {% render_field form.matricula class+="input" %}
+                <label>Nombre: </label>
+                {% render_field form.nombre class+="input" %}
+                <label>Apellido Paterno: </label>
+                {% render_field form.apellidop class+="input" %}
+                <label>Apellido Materno: </label>
+                {% render_field form.apellidom class+="input" %}
+                <label>Email: </label>
+                {% render_field form.email class+="input" %}
+                <label>Semestre: </label>
+                {% render_field form.semestre class+="select" %}
+                {% if form.help_text %}
+                <small class="textarea text-muted">{{ form.help_text }}</small>
+                {% endif %}
+            </div>
+        <br/> 
+        <button type="submit" class="button is-primary">Guardar</button>
+        </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
