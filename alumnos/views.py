@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
 from tablib import Dataset
+from django.db.models import Q
 
 from .models import Alumno
 from .forms import PostForm
@@ -16,6 +17,17 @@ class IndexView(ListView):
     context_object_name = 'alumnos_rec'
     def get_queryset(self):
         return Alumno.objects.all().order_by('matricula')
+
+class SearchResultsView(ListView):
+    model = Alumno
+    template_name = 'alumnos/search_results.html'
+
+    def get_queryset(self): # new
+        query = self.request.GET.get('q')
+        object_list = Alumno.objects.filter(
+            Q(matricula__icontains=query) | Q(nombre__icontains=query) | Q(apellidop__icontains=query) | Q(apellidom__icontains=query)
+        )
+        return object_list
 
 class PostDetailView(DetailView):
     model=Alumno
@@ -30,7 +42,7 @@ def PostView(request):
             subject = 'Has sido dado de alta'
             message = ' Bienvenido alumno ' +str(form['nombre'].value())+ ' con numero de control ' + str(form['matricula'].value())+ ' al sistema.'
             email_from = settings.EMAIL_HOST_USER
-            recipient_list = str(form['email'].value())
+            recipient_list = str(form['email'].value()) 
             send_mail( subject, message, email_from, [recipient_list] )
             return redirect('alumnos:index')
         else:

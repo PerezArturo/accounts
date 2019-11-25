@@ -1,10 +1,12 @@
+from django.forms import ModelForm, TextInput, EmailInput
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from .models import Alumno
 
-class PostForm(forms.ModelForm):
+class PostForm(ModelForm):
     matricula = forms.CharField(widget=forms.TextInput(attrs={'min':1,'max': '6','type': 'number'}))
     email = forms.CharField(widget=forms.EmailInput())
+
     class Meta:
         model = Alumno
         fields = "__all__"

@@ -1,6 +1,7 @@
 from django.urls import path
 
 from . import views
+from .views import SearchResultsView
 
 app_name = 'alumnos'
 urlpatterns = [
@@ -10,5 +11,6 @@ urlpatterns = [
     path('nuevo/archivo', views.simple_upload, name='postfile'),
     path('edit/<int:pk>/', views.edit, name='edit'),
     path('delete/<int:pk>/', views.delete, name='delete'),
+    path('search/', SearchResultsView.as_view(), name='search_results'),
     
 ]

@@ -16,8 +16,9 @@
 
         <div class="container is-fullhd">
             <h3 class="title is-3">Alumnos inscritos en el grupo</h3>
-                {{grupo.alumno.all|join:", "}}
-            
+            {% for t in grupo.alumno.all %}
+                <span>{{t}}</span> </br>
+            {% endfor %}
         </div>
 </div>
 {% endblock %}

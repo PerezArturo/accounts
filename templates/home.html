@@ -18,8 +18,11 @@
     </div>
 
     <div class="content-body">
-      
-    
+        <h1 class="title is-1">Busqueda de alumnos</h1>
+        <h3 class="subtitle is-5">(Realizar busqueda con <span class="is-family-code has-text-weight-bold"> ENTER</span>)</h3>
+        <form action="{% url 'alumnos:search_results' %}" method="get">
+            <input class="input" name="q" type="text" placeholder="Buscar alumno...">
+        </form>
     </div>
             </div>
         </div>
