@@ -20,7 +20,7 @@ class Alumno(models.Model):
     nombre = models.CharField(max_length=50,null = False)
     apellidop = models.CharField(max_length=50,null = False)
     apellidom = models.CharField(max_length=50,null = False)
-    email = models.EmailField(max_length=254,null = False, validators=[validate_email])
+    email = models.EmailField(max_length=254,null = False)
     semestre = models.CharField(
         max_length=2,
         choices=SEMESTRES,
